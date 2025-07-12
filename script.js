@@ -55,7 +55,6 @@ function saveUsers() {
     localStorage.setItem('zmi_users', JSON.stringify(users));
 }
 
-// Load data from localStorage
 function loadData() {
     const savedNews = localStorage.getItem('zmi_news');
     const savedLikes = localStorage.getItem('zmi_likes');
@@ -64,47 +63,20 @@ function loadData() {
     if (savedNews) {
         news = JSON.parse(savedNews);
     } else {
-        // Add sample news if no data exists
-        news = [
-            {
-                id: Date.now() + 1,
-                title: "Важливі економічні зміни в Україні",
-                content: "Уряд оголосив про нові економічні реформи, які мають покращити інвестиційний клімат та залучити іноземні інвестиції. Експерти позитивно оцінюють ці кроки та прогнозують зростання ВВП на 3-5% у наступному році.",
-                tag: "Економіка",
-                author: "Вадим",
-                date: new Date().toLocaleDateString('uk-UA'),
-                likes: 15,
-                views: 234,
-                video: null,
-                images: []
-            },
-            {
-                id: Date.now() + 2,
-                title: "Культурний фестиваль у Києві",
-                content: "У столиці стартував міжнародний культурний фестиваль, який триватиме тиждень. Очікується участь артистів з понад 20 країн світу. Програма включає концерти, виставки та майстер-класи.",
-                tag: "Культура",
-                author: "Вася",
-                date: new Date().toLocaleDateString('uk-UA'),
-                likes: 23,
-                views: 156,
-                video: null,
-                images: []
-            },
-            {
-                id: Date.now() + 3,
-                title: "Прорив у сфері штучного інтелекту",
-                content: "Українські вчені розробили новий алгоритм машинного навчання, який може революціонізувати медичну діагностику. Технологія вже пройшла успішні тести в провідних клініках.",
-                tag: "Технології",
-                author: "Вадим",
-                date: new Date().toLocaleDateString('uk-UA'),
-                likes: 42,
-                views: 389,
-                video: null,
-                images: []
-            }
-        ];
-        saveData();
+        // Не додаємо жодних новин за замовчуванням
+        news = []; // просто залишаємо порожній масив
+        saveData(); // зберігаємо порожній список
     }
+    
+    if (savedLikes) {
+        likedNews = new Set(JSON.parse(savedLikes));
+    }
+    
+    if (savedViews) {
+        viewedNews = new Set(JSON.parse(savedViews));
+    }
+}
+
     
     if (savedLikes) {
         likedNews = new Set(JSON.parse(savedLikes));
