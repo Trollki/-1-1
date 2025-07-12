@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЗМІ 1+1 - Головні новини</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">ЗМІ 1+1</h1>
+                <nav class="nav">
+                    <div class="nav-links">
+                        <a href="#" class="nav-link active" data-page="home">Головна</a>
+                        <a href="#" class="nav-link" data-page="about">Про нас</a>
+                        <a href="#" class="nav-link" data-page="leaderboard" id="leaderboardLink" style="display: none;">Leaderboard</a>
+                    </div>
+                    <div class="auth-buttons">
+                        <button id="loginBtn" class="btn btn-outline">Вхід для журналістів</button>
+                        <button id="logoutBtn" class="btn btn-outline" style="display: none;">Вихід</button>
+                    </div>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#" class="mobile-nav-link active" data-page="home">Головна</a>
+        <a href="#" class="mobile-nav-link" data-page="about">Про нас</a>
+        <a href="#" class="mobile-nav-link" data-page="leaderboard" id="mobileLeaderboardLink" style="display: none;">Leaderboard</a>
+        <div class="mobile-auth">
+            <button id="mobileLoginBtn" class="btn btn-outline">Вхід для журналістів</button>
+            <button id="mobileLogoutBtn" class="btn btn-outline" style="display: none;">Вихід</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Home Page -->
+            <div id="homePage" class="page active">
+                <!-- Journalist Panel -->
+                <div id="journalistPanel" class="journalist-panel" style="display: none;">
+                    <div class="panel-header">
+                        <h2>Панель журналіста</h2>
+                        <span id="journalistName" class="journalist-name"></span>
+                    </div>
+                    <div class="journalist-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Опубліковано:</span>
+                            <span id="journalistPosts" class="stat-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Загальний рейтинг:</span>
+                            <span id="journalistRating" class="stat-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Перегляди:</span>
+                            <span id="journalistViews" class="stat-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Перегляди:</span>
+                            <span id="journalistViews" class="stat-value">0</span>
+                        </div>
+                    </div>
+                    <div class="panel-actions">
+                        <button id="addNewsBtn" class="btn btn-primary">Додати новину</button>
+                        <button id="manageNewsBtn" class="btn btn-secondary">Мої новини</button>
+                        <button id="analyticsBtn" class="btn btn-secondary">Аналітика</button>
+                        <button id="adminPanelBtn" class="btn btn-danger" style="display: none;">Адмін панель</button>
+                    </div>
+                </div>
+
+                <!-- Search and Filter -->
+                <div class="search-filter-section">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Пошук новин..." class="search-input">
+                        <button id="searchBtn" class="search-btn">🔍</button>
+                    </div>
+                    
+                    <div class="tag-filter">
+                        <h3>Фільтр по тегам:</h3>
+                        <div class="tag-buttons">
+                            <button class="tag-btn active" data-tag="all">Всі</button>
+                            <button class="tag-btn" data-tag="Політика">Політика</button>
+                            <button class="tag-btn" data-tag="Економіка">Економіка</button>
+                            <button class="tag-btn" data-tag="Світ">Світ</button>
+                            <button class="tag-btn" data-tag="Культура">Культура</button>
+                            <button class="tag-btn" data-tag="Технології">Технології</button>
+                            <button class="tag-btn" data-tag="Спорт">Спорт</button>
+                            <button class="tag-btn" data-tag="Наука">Наука</button>
+                            <button class="tag-btn" data-tag="Надзвичайне">Надзвичайне</button>
+                            <button class="tag-btn" data-tag="Мистецтво">Мистецтво</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- News Grid -->
+                <div id="newsGrid" class="news-grid">
+                    <!-- News items will be inserted here -->
+                </div>
+            </div>
+
+            <!-- About Page -->
+            <div id="aboutPage" class="page">
+                <div class="about-content">
+                    <h1>Про ЗМІ 1+1</h1>
+                    <div class="about-section">
+                        <h2>Незалежна новинна платформа</h2>
+                        <p>ЗМІ 1+1 - це сучасна новинна платформа, яка надає актуальну та достовірну інформацію з різних сфер життя. Наша команда професійних журналістів працює цілодобово, щоб забезпечити вас найсвіжішими новинами.</p>
+                    </div>
+                    
+                    <div class="about-section">
+                        <h2>Наша місія</h2>
+                        <p>Ми прагнемо створити відкритий простір для обміну інформацією, де кожен може бути в курсі найважливіших подій. Наша платформа підтримує принципи свободи слова та незалежної журналістики.</p>
+                    </div>
+
+                    <div class="about-stats">
+                        <div class="about-stat-item">
+                            <span class="about-stat-value" id="aboutTotalJournalists">0</span>
+                            <span class="about-stat-label">зареєстрованих журналістів</span>
+                        </div>
+                        <div class="about-stat-item">
+                            <span class="about-stat-value" id="aboutTotalNews">0</span>
+                            <span class="about-stat-label">опублікованих новин</span>
+                        </div>
+                        <div class="about-stat-item">
+                            <span class="about-stat-value" id="aboutTotalViews">0</span>
+                            <span class="about-stat-label">переглядів</span>
+                        </div>
+                    </div>
+
+                    <div class="demo-notice">
+                        <h3>⚠️ Демо-режим</h3>
+                        <p>Цей сайт працює в демонстраційному режимі. Всі дані зберігаються локально в браузері та є тимчасовими. При очищенні кешу браузера дані будуть втрачені.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leaderboard Page -->
+            <div id="leaderboardPage" class="page">
+                <div class="leaderboard-content">
+                    <h1>Leaderboard журналістів</h1>
+                    <div class="leaderboard-table">
+                        <table id="leaderboardTable">
+                            <thead>
+                                <tr>
+                                    <th>Позиція</th>
+                                    <th>Журналіст</th>
+                                    <th>Публікації</th>
+                                    <th>Лайки</th>
+                                    <th>Перегляди</th>
+                                    <th>Рейтинг</th>
+                                    <th>Середній рейтинг</th>
+                                    <th>Останя активність</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leaderboardBody">
+                                <!-- Leaderboard data will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article Detail Page -->
+            <div id="articlePage" class="page">
+                <div class="article-content">
+                    <button id="backToHome" class="btn btn-secondary back-btn">← Назад до новин</button>
+                    <div id="articleDetail">
+                        <!-- Article details will be inserted here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Manage News Page -->
+            <div id="manageNewsPage" class="page">
+                <div class="manage-content">
+                    <h1>Управління новинами</h1>
+                    <button id="backToHomeFromManage" class="btn btn-secondary back-btn">← Назад до головної</button>
+                    <div id="manageNewsGrid" class="manage-news-grid">
+                        <!-- Manage news items will be inserted here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Page -->
+            <div id="analyticsPage" class="page">
+                <div class="analytics-content">
+                    <h1>Аналітика журналіста</h1>
+                    <button id="backToHomeFromAnalytics" class="btn btn-secondary back-btn">← Назад до головної</button>
+                    
+                    <div class="analytics-grid">
+                        <div class="analytics-card">
+                            <h3>Популярність статей</h3>
+                            <div id="popularityChart" class="chart-container">
+                                <!-- Chart will be inserted here -->
+                            </div>
+                        </div>
+                        
+                        <div class="analytics-card">
+                            <h3>Статистика по тегам</h3>
+                            <div id="tagStats" class="tag-stats">
+                                <!-- Tag statistics will be inserted here -->
+                            </div>
+                        </div>
+                        
+                        <div class="analytics-card">
+                            <h3>Активність по дням</h3>
+                            <div id="activityChart" class="activity-chart">
+                                <!-- Activity chart will be inserted here -->
+                            </div>
+                        </div>
+                        
+                        <div class="analytics-card">
+                            <h3>Топ статті</h3>
+                            <div id="topArticles" class="top-articles">
+                                <!-- Top articles will be inserted here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Panel Page -->
+            <div id="adminPanelPage" class="page">
+                <div class="admin-content">
+                    <h1>Адміністративна панель</h1>
+                    <button id="backToHomeFromAdmin" class="btn btn-secondary back-btn">← Назад до головної</button>
+                    
+                    <div class="admin-grid">
+                        <!-- Create New Journalist -->
+                        <div class="admin-card">
+                            <h3>Створити нового журналіста</h3>
+                            <form id="createJournalistForm" class="admin-form">
+                                <div class="form-group">
+                                    <label for="newJournalistName">Ім'я журналіста:</label>
+                                    <input type="text" id="newJournalistName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="newJournalistPassword">Пароль:</label>
+                                    <input type="text" id="newJournalistPassword" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="newJournalistRole">Роль:</label>
+                                    <select id="newJournalistRole" required>
+                                        <option value="journalist">Журналіст</option>
+                                        <option value="admin">Адміністратор</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Створити журналіста</button>
+                            </form>
+                        </div>
+                        
+                        <!-- Manage Journalists -->
+                        <div class="admin-card">
+                            <h3>Управління журналістами</h3>
+                            <div id="journalistsList" class="journalists-list">
+                                <!-- Journalists will be inserted here -->
+                            </div>
+                        </div>
+                        
+                        <!-- Site Statistics -->
+                        <div class="admin-card">
+                            <h3>Статистика сайту</h3>
+                            <div class="admin-stats">
+                                <div class="admin-stat-item">
+                                    <span class="admin-stat-label">Всього журналістів:</span>
+                                    <span id="adminTotalJournalists" class="admin-stat-value">0</span>
+                                </div>
+                                <div class="admin-stat-item">
+                                    <span class="admin-stat-label">Всього новин:</span>
+                                    <span id="adminTotalNews" class="admin-stat-value">0</span>
+                                </div>
+                                <div class="admin-stat-item">
+                                    <span class="admin-stat-label">Всього лайків:</span>
+                                    <span id="adminTotalLikes" class="admin-stat-value">0</span>
+                                </div>
+                                <div class="admin-stat-item">
+                                    <span class="admin-stat-label">Всього переглядів:</span>
+                                    <span id="adminTotalViews" class="admin-stat-value">0</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Recent Activity -->
+                        <div class="admin-card">
+                            <h3>Остання активність</h3>
+                            <div id="recentActivity" class="recent-activity">
+                                <!-- Recent activity will be inserted here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer with Statistics -->
+    <footer class="footer">
+        <div class="container">
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-value" id="totalNews">0</span>
+                    <span class="stat-label">новин опубліковано</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="totalLikes">0</span>
+                    <span class="stat-label">лайків поставлено</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="totalViews">0</span>
+                    <span class="stat-label">переглядів</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="activeJournalists">2</span>
+                    <span class="stat-label">активних журналістів</span>
+                </div>
+            </div>
+            <p class="copyright">&copy; 2025 ЗМІ 1+1. Всі права захищені.</p>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Вхід для журналістів</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Ім'я користувача:</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Пароль:</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Увійти</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add News Modal -->
+    <div id="addNewsModal" class="modal">
+        <div class="modal-content large">
+            <span class="close">&times;</span>
+            <h2>Додати новину</h2>
+            <form id="addNewsForm">
+                <div class="form-group">
+                    <label for="newsTitle">Заголовок новини:</label>
+                    <input type="text" id="newsTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="newsContent">Текст новини:</label>
+                    <textarea id="newsContent" rows="6" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="newsTag">Тег:</label>
+                    <select id="newsTag" required>
+                        <option value="">Оберіть тег</option>
+                        <option value="Політика">Політика</option>
+                        <option value="Економіка">Економіка</option>
+                        <option value="Світ">Світ</option>
+                        <option value="Культура">Культура</option>
+                        <option value="Технології">Технології</option>
+                        <option value="Спорт">Спорт</option>
+                        <option value="Наука">Наука</option>
+                        <option value="Надзвичайне">Надзвичайне</option>
+                        <option value="Мистецтво">Мистецтво</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="newsVideo">Посилання на відео (необов'язково):</label>
+                    <input type="url" id="newsVideo" placeholder="https://www.youtube.com/watch?v=...">
+                    <small>Підтримуються YouTube, Vimeo та інші відео-платформи</small>
+                </div>
+                <div class="form-group">
+                    <label for="newsImages">Фото (необов'язково):</label>
+                    <input type="file" id="newsImages" multiple accept="image/*">
+                    <small>Можна завантажити до 5 фото одночасно</small>
+                    <div id="imagePreview" class="image-preview"></div>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="isPinned"> Закріпити новину (тільки для адміністраторів)
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary">Опублікувати</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content image-modal-content">
+            <span class="close">&times;</span>
+            <img id="modalImage" src="" alt="Full size image">
+            <div class="image-nav">
+                <button id="prevImage" class="nav-btn">‹</button>
+                <button id="nextImage" class="nav-btn">›</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
